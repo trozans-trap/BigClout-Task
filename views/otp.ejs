@@ -17,14 +17,14 @@
                 <center>recover Password</center>
             </h3>
         </div>
-        <form method="PUT" action="/forgot">
+        <form method="POST" action="/otp">
             <div class="form-group">
                 <label >OTP</label>
-                <input type="number" class="form-control" >
+                <input type="number" class="form-control" name="otp1">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

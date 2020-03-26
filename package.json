@@ -9,11 +9,16 @@
   "author": "vikalp chawla",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.5.5",
+    "aws-sdk": "^2.647.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.9.6",
-    "nodemon": "^2.0.2"
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "nodemon": "^2.0.2",
+    "sendgrid": "^5.2.3"
   }
 }
