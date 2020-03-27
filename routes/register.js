@@ -3,11 +3,12 @@ const router = express.Router();
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
 var User = require('../models/user');
+var Upload = require('../models/upload');
 
 
 const upload = require('../video');
 
-const singleUpload = upload.single('video');
+// const singleUpload = upload.single('video');
 
 //SendGrid Mail
 const sgMail = require('@sendgrid/mail');
@@ -60,12 +61,14 @@ router.get('/login',(req,res)=>{
     res.render('login');
 });
 
+var olduser;
 router.post('/login',bodyParser,(req,res)=>{
     const {username,password}= req.body;
      User.findOne({username: username})
      .then( user=>{
 
         if(user) {
+            olduser=username;
             console.log(user);
             bcrypt.compare(password, user.password, (err,isMatch)=>{
                 if (err)
@@ -139,11 +142,49 @@ router.post('/otp',bodyParser,(req,res)=>{
 });
 
 
-router.post('/image-upload',function(req,res,next){
-    singleUpload(req,res, (err)=>{
-       const doclink = req.file.location;
-       
-    });  
+router.get('/file-upload',function(req,res,next){
+    res.render('upload'); 
+});
+
+router.post('/file-upload',upload.single('video'), function(req,res,next){
+    const file = req.file.location;
+    if(!file){
+        const error = new Error('Please upload a file')
+        error.httpStatusCode = 400
+        return next(error)
+    }
+    else{
+        Upload.findOne({username: olduser})
+     .then( user=>{
+            console.log(olduser);
+        if(user) {
+            const doclink = file;
+           
+            Upload.update({username: olduser},{$push: {doclink :{ $each:doclink} }});
+            Upload.findOne({username: olduser}).then(
+                (user)=>{
+                    if (user)
+                    console.log(user+olduser);
+                }
+            )
+        }
+        else{
+             const username= olduser;
+             const doclink=file;
+            const newUpload= new Upload({
+                username,
+                doclink
+            });  
+            newUpload.save().then((person)=>{
+                res.send(person);
+            }).catch(err => {console.log(err);
+                res.send(err)});
+
+        } 
+        
+    });
+    }
+    res.send(file)
 });
 
 module.exports= router;
