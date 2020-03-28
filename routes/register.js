@@ -41,9 +41,19 @@ router.post('/register', bodyParser, (req, res, err) => {
     });
 
     if(!username|!name|!email|!password)
-     res.render('error',{error:"All Fields required , Fill all fields"})
+     res.render('error',{error:"All Fields required , Fill all fields"});
 
-    //Hash Password
+     User.findOne({username:username}).then(
+         user =>{
+             if(user)
+             res.render('error',{error:"Username alredy Used try another"});
+             else{
+                User.findOne({email:email}).then(
+                    user =>{
+                        if(user)
+                        res.render('error',{error:"email alredy Used try another"});
+                        else{
+                            //Hash Password
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) res.render('error',{error:err});
@@ -58,7 +68,14 @@ router.post('/register', bodyParser, (req, res, err) => {
                 res.render('error',{error:err});
             });
         });
-    });
+    });  
+                        }
+                    });
+             }
+         }
+     )
+
+    
         
 
 });
