@@ -52,16 +52,14 @@ router.post('/register', bodyParser, (req, res, err) => {
             //save User
             newUser.save().then((person) => {
                 console.log(person);
+                res.render('home',{data: "Registerd Succesfully"});
             }).catch(err => {
                 console.log(err);
                 res.render('error',{error:err});
             });
         });
     });
-    if (!err)
-        res.render('success');
-    else 
-    res.render('error',{error:err});
+        
 
 });
 
