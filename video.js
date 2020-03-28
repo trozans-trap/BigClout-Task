@@ -15,13 +15,10 @@ const upload = multer({
     s3: s3,
     bucket: 'datapackets',
     acl: 'public-read',
-    metadata: function (req, file, cb) {
-      cb(null, {fieldName: 'TESTING_META_DATA'});
-    },
     key: function (req, file, cb) {
       cb(null, Date.now().toString() + file.originalname)
     }
-  })
+  }),
 })
 
 module.exports=upload;

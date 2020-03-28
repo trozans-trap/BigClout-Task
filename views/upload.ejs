@@ -17,13 +17,13 @@
                 <center>Upload video</center>
             </h3>
         </div>
-        <form method="POST" action="/file-upload" enctype="multipart/form-data">
+        <form method="POST" action="/file-upload" enctype="multipart/form-data" style="margin-left: 45%;">
             <div class="form-group">
-              <label for="exampleFormControlFile1">Example file input</label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1" name="video">
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" accept="video/*" class="form-control-file" id="exampleFormControlFile1" name="video" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

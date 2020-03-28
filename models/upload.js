@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
             type:String,
     },
     doclink:{
-            type:[String],
+        type: [String],
     }
 })
 

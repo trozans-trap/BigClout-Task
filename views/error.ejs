@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success</title>
+    <title>Error</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -14,23 +14,15 @@
 
     <div class="container">
         <div class="jumbotron">
-            <h3 class="display-4">
-                <center>Hi..<%= data %></center>
-            </h3>
-            <h3 class="display-4">
-                <center>You are Logged In</center>
-            </h3>
-            <br>
-            <center>
-                  <div><a href="/logout">Logout</a></div>
-                </center>
-            <center>
-                <div><a href="/file-upload">Upload Media</a></div>
-            </center>
-            <center>
-                <div><a href="/allmedia">View Media</a></div>
-            </center>
+            <h1><center><%= error %></center></h1>
         </div>
+        <ul class="list-group list-group-horizontal" style="margin-left: 35%; ">
+            <li class="list-group-item"style="border: 0px solid white;" ><h4><a href="/home" class="badge badge-primary">Home</a></h4></li>
+            <li class="list-group-item"style="border: 0px solid white;" ><h4><a href="/register" class="badge badge-primary">Register</a></h4></li>
+            <li class="list-group-item"style="border: 0px solid white;" ><h4><a href="/login" class="badge badge-primary">Login</a></h4></li>
+        </ul>
+       
+    
     </div>
 
 
